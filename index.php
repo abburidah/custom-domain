@@ -1,12 +1,80 @@
+<?php
+
+function feedback404()
+{
+    header("HTTP/1.0 404 Not Found");
+    echo "<h1>404 Not Found</h1>";
+}
+
+if (isset($_GET['heng'])) {
+    $filename = "list.txt";
+    $lines = file($filename, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    $target_string = strtolower($_GET['heng']);
+    foreach ($lines as $item) {
+        if (strtolower($item) === $target_string) {
+            $BRAND = strtoupper($target_string);
+        }
+    }
+    if (isset($BRAND)) {
+        $BRANDS = $BRAND;
+        $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http';
+        $fullUrl = $protocol . "://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+        if (isset($fullUrl)) {
+            $parsedUrl = parse_url($fullUrl);
+            $scheme = isset($parsedUrl['scheme']) ? $parsedUrl['scheme'] : '';
+            $host = isset($parsedUrl['host']) ? $parsedUrl['host'] : '';
+            $path = isset($parsedUrl['path']) ? $parsedUrl['path'] : '';
+            $query = isset($parsedUrl['query']) ? $parsedUrl['query'] : '';
+            $baseUrl = $scheme . "://" . $host . $path . '?' . $query;
+            $urlPath = $baseUrl;
+        } else {
+            echo "URL saat ini tidak didefinisikan.";
+        }
+    } else {
+        feedback404();
+        exit();
+    }
+} else {
+    feedback404();
+    exit();
+}
+date_default_timezone_set('Asia/Jakarta');
+$currentTime = date('Y-m-d\TH:i:sP');
+
+/*NOTE!!!
+
+*UPLOAD DAFTAR KEYWORD ANDA DENGAN NAMA FOLDER list.txt
+
+*Ganti Nama Brand Pada ARtikel Dan Landing Page
+<?php echo $BRANDS ?> 
+
+*Ganti Url Path Dengan Ini
+<?php echo $urlPath ?>
+
+*Jangan Lupa Ganti Redirect Login/Daftar DLL
+https://www.linkdaftar-login.com/
+
+*Buka file get-sitemap.php URL Path Link Tunnel Berada
+contoh:https://www.linkdaftar/tunnel/get-sitemap.php
+Sitemap akan tergenerate otomasi seusai daftar keyword di file list.txt 
+
+*/
+?>
     
+
+
+
+
+
+
 <!DOCTYPE html>
 <html amp lang="id">
    <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>SLOT GACOR : Situs Gacor Terbaik dan Terpercaya Agen Slot Online Resmi</title>
-    <link rel="canonical" href="https://81f76ec6.seoamara.pages.dev/">
-    <meta name="description" content="SLOT GACOR adalah situs gacor hari ini dengan game terlengkap slot online, sabung ayam , togel , casino dengan motode deposit bank, ewallet, Login dan Daftar sekarang"/>
+    <title><?php echo $BRANDS ?>  : Situs Gacor Terbaik dan Terpercaya Agen Slot Online Resmi</title>
+    <link rel="canonical" href="<?php echo $urlPath ?>">
+    <meta name="description" content="<?php echo $BRANDS ?>  adalah situs gacor hari ini dengan game terlengkap slot online, sabung ayam , togel , casino dengan motode deposit bank, ewallet, Login dan Daftar sekarang"/>
     <meta name="robots" content="index, follow, noarchive"/>
     <meta name="page-locale" content="id,en">
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -14,25 +82,25 @@
     <meta content="width" name="MobileOptimized">
     <meta name="supported-amp-formats" content="websites">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="SLOT GACOR : Situs Gacor Terbaik dan Terpercaya Agen Slot Online Resmi">
-    <meta name="twitter:description" content="SLOT GACOR adalah situs gacor hari ini dengan game terlengkap slot online, sabung ayam , togel , casino dengan motode deposit bank, ewallet, Login dan Daftar sekarang">
+    <meta name="twitter:title" content="<?php echo $BRANDS ?>  : Situs Gacor Terbaik dan Terpercaya Agen Slot Online Resmi">
+    <meta name="twitter:description" content="<?php echo $BRANDS ?>  adalah situs gacor hari ini dengan game terlengkap slot online, sabung ayam , togel , casino dengan motode deposit bank, ewallet, Login dan Daftar sekarang">
     <meta name="twitter:image:src" content="isi link gambar">
-    <meta name="og:title" content="SLOT GACOR : Situs Gacor Terbaik dan Terpercaya Agen Slot Online Resmi">
-    <meta name="og:description" content="SLOT GACOR adalah situs gacor hari ini dengan game terlengkap slot online, sabung ayam , togel , casino dengan motode deposit bank, ewallet, Login dan Daftar sekarang">
+    <meta name="og:title" content="<?php echo $BRANDS ?>  : Situs Gacor Terbaik dan Terpercaya Agen Slot Online Resmi">
+    <meta name="og:description" content="<?php echo $BRANDS ?>  adalah situs gacor hari ini dengan game terlengkap slot online, sabung ayam , togel , casino dengan motode deposit bank, ewallet, Login dan Daftar sekarang">
     <meta name="og:image" content="isi link gambar">
     <meta property="og:image:width" content="400">
     <meta property="og:image:height" content="400">
-    <meta name="og:url" content="https://81f76ec6.seoamara.pages.dev/">
-    <meta name="og:site_name" content="SLOT GACOR">
+    <meta name="og:url" content="<?php echo $urlPath ?>">
+    <meta name="og:site_name" content="<?php echo $BRANDS ?> ">
     <meta name="og:locale" content="ID_id">
     <meta name="og:type" content="website">
-    <meta name="categories" content="SLOT GACOR"/>
+    <meta name="categories" content="<?php echo $BRANDS ?> "/>
     <meta name="language" content="ID">
     <meta name="rating" content="general">
-    <meta name="copyright" content="SLOT GACOR">
-    <meta name="author" content="SLOT GACOR">
+    <meta name="copyright" content="<?php echo $BRANDS ?> ">
+    <meta name="author" content="<?php echo $BRANDS ?> ">
     <meta name="distribution" content="global">
-    <meta name="publisher" content="SLOT GACOR">
+    <meta name="publisher" content="<?php echo $BRANDS ?> ">
     <meta name="geo.placename" content="Jakarta">
     <meta name="geo.country" content="ID">
     <meta name="geo.region" content="ID"/>
@@ -40,7 +108,7 @@
     <link rel="preload" as="image" href="img/bnner.jpg" />
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="12.png" type="image/x-icon">
+    <link rel="shortcut icon" href="https://dboma.com/mtp/favmtp.png" type="image/x-icon">
     <script async src="https://cdn.ampproject.org/v0.js"></script>
     <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
     <style amp-custom>
@@ -271,7 +339,7 @@
 
           <div>
             <a href='https://cutt.ly/Tunnel3' target=_blank rel="noopener noreferrer nofollow">
-              <amp-img style="border-radius: 10px;" src="168.png" width="400" height="400" layout="responsive" alt="SLOT GACOR"></amp-img>
+              <amp-img style="border-radius: 10px;" src="168.png" width="400" height="400" layout="responsive" alt="<?php echo $BRANDS ?> "></amp-img>
             </a>
           </div>
           <div class=kiw-kiw>
@@ -293,7 +361,7 @@
           </div>
         </div>
       
-        <span style="text-align: center;">©2024 SLOT GACOR. Situs Slot Online Gacor</span>
+        <span style="text-align: center;">©2024 <?php echo $BRANDS ?> . Situs Slot Online Gacor</span>
       </div>
     </main>
   </body>
