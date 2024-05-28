@@ -7,3 +7,10 @@
 /static/*
   Access-Control-Allow-Origin: *
   X-Robots-Tag: nosnippet
+
+/*
+  X-Robots-Tag: index
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: no-referrer
+  Link: <https://github.com/abburidah/custom-domain>; rel="repository"
